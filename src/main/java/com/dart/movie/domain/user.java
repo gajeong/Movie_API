@@ -3,11 +3,11 @@ package com.dart.movie.domain;
 import lombok.Getter;
 import javax.persistence.*;
 
-import com.dart.movie.dto.userForm;
+import com.dart.movie.dto.UserForm;
 
 @Entity
 @Getter
-public class user {
+public class User {
   @Id
   @Column(name="user_id", length = 20, nullable = false)
   private String id;
@@ -20,15 +20,15 @@ public class user {
 
   private char sex;
 
-  public user(){}
-  public user(userForm userForm){
+  public User(){}
+  public User(UserForm userForm){
     this.email = userForm.getEmail();
     this.pw = userForm.getPw();
     this.id = userForm.getUser_id();
   }
 
-  public static user createUser(userForm userForm){
-    return new user(userForm);
+  public static User createUser(UserForm userForm){
+    return new User(userForm);
   }
 
 }

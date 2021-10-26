@@ -1,9 +1,9 @@
 package com.dart.movie.repository;
 
-import com.dart.movie.domain.user;
+import com.dart.movie.domain.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface userRepository extends JpaRepository<user, Long>{
+public interface UserRepository extends JpaRepository<User, Long>{
   boolean existsByEmail(String email);
 }

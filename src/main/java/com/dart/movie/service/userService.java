@@ -2,10 +2,10 @@ package com.dart.movie.service;
 
 import javax.transaction.Transactional;
 
-import com.dart.movie.domain.user;
-import com.dart.movie.dto.userForm;
-import com.dart.movie.exception.emailException;
-import com.dart.movie.repository.userRepository;
+import com.dart.movie.domain.User;
+import com.dart.movie.dto.UserForm;
+import com.dart.movie.exception.EmailException;
+import com.dart.movie.repository.UserRepository;
 
 import org.springframework.stereotype.Service;
 
@@ -19,17 +19,17 @@ import lombok.RequiredArgsConstructor;
 주로 의존성 주입 편의성을 위해 사용되곤 한다. 
  */
 @RequiredArgsConstructor
-public class userService {
-  private final userRepository userRepository;
+public class UserService {
+  private final UserRepository userRepository;
   @Transactional
-  public void signupUser(userForm userForm) throws Exception {
+  public void signupUser(UserForm userForm) throws Exception {
     validateDuplicateEmail(userForm.getEmail());
-    userRepository.save(user.createUser(userForm));
+    userRepository.save(User.createUser(userForm));
   }
 
   private void validateDuplicateEmail(String email) throws Exception{
     if(userRepository.existsByEmail(email)){
-      throw new emailException();
+      throw new EmailException();
     }
   }
 }
